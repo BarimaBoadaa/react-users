@@ -8,7 +8,7 @@ import Userform from "./Components/Userform";
 
 function App() {
   const [users, setUsers] = useState([
-    { name: "Peter", email: "Pet@gmail.com", gen: "22", id: uuid() },
+    { name: "Peter", email: "pet@gmail.com", gen: "22", id: uuid() },
     { name: "Sam", email: "sam@gmail.com", gen: "22", id: uuid() },
     { name: "Jane", email: "jane@gmail.com", gen: "23", id: uuid() },
   ]);
