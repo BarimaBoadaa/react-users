@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import { v4 as uuid } from "uuid";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from "react";
+import Users from "./Components/Users";
+import Userform from "./Components/Userform";
 
 function App() {
+  const [users, setUsers] = useState([
+    { name: "Peter", email: "Pet@gmail.com", gen: "22", id: uuid() },
+    { name: "Sam", email: "sam@gmail.com", gen: "22", id: uuid() },
+    { name: "Jane", email: "jane@gmail.com", gen: "23", id: uuid() },
+  ]);
+  function addUser(user) {
+    setUsers([...users, user]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="row">
+        <Userform addUser={addUser} />
+        <div className="col-md-6">
+          <Users users={users} />
+        </div>
+      </div>
     </div>
   );
 }
