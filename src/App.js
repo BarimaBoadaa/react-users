@@ -13,7 +13,15 @@ function App() {
     { name: "Jane", email: "jane@gmail.com", gen: "23", id: uuid() },
   ]);
   function addUser(user) {
-    setUsers([...users, user]);
+    setUsers([...users, { ...user, id: uuid() }]);
+  }
+
+  function handleEdit(id, newInfo) {
+    setUsers(users.map((user) => (user.id === id ? newInfo : user)));
+  }
+
+  function handleDelete(id) {
+    setUsers(users.filter((user) => user.id !== id));
   }
 
   return (
@@ -21,7 +29,11 @@ function App() {
       <div className="row">
         <Userform addUser={addUser} />
         <div className="col-md-6">
-          <Users users={users} />
+          <Users
+            users={users}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
         </div>
       </div>
     </div>

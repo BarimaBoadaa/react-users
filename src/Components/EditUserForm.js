@@ -2,20 +2,23 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function Userform({ addUser }) {
+function EditUserForm(props) {
   const [user, setUser] = useState({
-    name: "",
-    email: "",
-    gen: "",
+    name: props.tempUser.name,
+    email: props.tempUser.email,
+    gen: props.tempUser.gen,
+    id: props.tempUser.id,
   });
   function handleSubmit(e) {
     e.preventDefault();
-    addUser(user);
+    props.handleEdit(props.tempUser.id, user);
     setUser({
       name: "",
       email: "",
       gen: "",
+      id: "",
     });
+    props.handleClose();
   }
   function handleChange(e) {
     const name = e.target.name;
@@ -65,4 +68,4 @@ function Userform({ addUser }) {
   );
 }
 
-export default Userform;
+export default EditUserForm;
